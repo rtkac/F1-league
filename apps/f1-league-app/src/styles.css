@@ -1,0 +1,16 @@
+/* For base styles (check out normalize.css) */
+@tailwind base;
+/* Simple reusable components provided by tailwind */
+@tailwind components;
+/* utility classes generated based on our tailwind.config.js */
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center text-black bg-primary hover:brightness-110 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center text-white bg-secondary hover:brightness-110 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3;
+  }
+}

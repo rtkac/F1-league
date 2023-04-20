@@ -1,0 +1,90 @@
+{
+  "name": "f1-league-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/f1-league-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/f1-league-app",
+        "styles": "apps/f1-league-app/src/styles.css",
+        "assets": ["apps/retail/src/assets"]
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "f1-league-app:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "f1-league-app:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "f1-league-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "f1-league-app:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "f1-league-app:build:development"
+        },
+        "production": {
+          "buildTarget": "f1-league-app:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/f1-league-app"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/f1-league-app"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/f1-league-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "options": {
+        "buildTarget": "f1-league-app:build"
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "changelogHeader": "# Changelog F1 League \n",
+        "baseBranch": "main",
+        "syncVersions": false,
+        "commitMessageFormat": "chore(${projectName}): release: v${version}",
+        "push": false
+      }
+    }
+  },
+  "tags": []
+}
